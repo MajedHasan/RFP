@@ -1,0 +1,56 @@
+/* Font Family  */
+@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+  font-family: 'Mulish', "sans-serif";
+}
+
+.container {
+  max-width: 1140px;
+  padding: 0px 16px;
+  margin: 0 auto;
+}
+
+:root {
+  --tabs-border-color: #00699b;
+  --tabs-active-background-color: #00699b;
+  --text-color: #00699b;
+}
+
+.active-link{
+  color: red !important;
+}
+
+/* .pending-link{
+  color: green !important;
+} */
+
+
+
+.tabs-text-color {
+  color: var(--text-color);
+}
+
+/* Tab active color  */
+.tab-button {
+  color: #00699b;
+  /* background-color: #9087e4; */
+  padding: 8px 30px;
+  font-size: 16px;
+  font-weight: 800;
+  border-radius: 25px;
+  transition: background-color 0.3s;
+  margin: 0px 10px 12px 0px;
+  border: 1px solid var(--tabs-border-color);
+}
+
+.tab-button.active {
+  background-color: #00699b;
+  color: #fff;
+}
+
+

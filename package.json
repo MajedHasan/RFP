@@ -1,0 +1,36 @@
+{
+  "name": "rfp",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "aos": "^3.0.0-beta.6",
+    "formik": "^2.4.5",
+    "hamburgers": "^1.2.1",
+    "jquery": "^3.7.1",
+    "next": "14.0.4",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-fast-marquee": "^1.6.2",
+    "react-hook-form": "^7.0.0",
+    "react-icons": "^4.12.0",
+    "react-popup": "^0.11.2",
+    "react-simple-typewriter": "^5.0.1",
+    "react-toastify": "^9.1.3",
+    "swiper": "^11.0.5",
+    "yup": "^1.3.3"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.0.1",
+    "eslint": "^8",
+    "eslint-config-next": "14.0.4",
+    "file-loader": "^6.2.0",
+    "postcss": "^8",
+    "tailwindcss": "^3.3.0"
+  }
+}
