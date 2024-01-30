@@ -97,9 +97,8 @@ const CustomSliderTab = () => {
                           have the answer.
                         </p>
                         <div className="mt-[10px]">
-                        <Link Link=" Discover our RFP software solution" />                         
+                          <Link Link=" Discover our RFP software solution" />
                         </div>
-                       
                       </div>
                     )}
                     {tab === "tab2" && (
@@ -137,8 +136,10 @@ const CustomSliderTab = () => {
                           have the answer.{" "}
                         </p>
                         <div className="mt-[10px]">
-                          <Link Link="Discover our security questionnaire software
-                            solution" />
+                          <Link
+                            Link="Discover our security questionnaire software
+                            solution"
+                          />
                         </div>
                       </>
                     )}
@@ -149,7 +150,6 @@ const CustomSliderTab = () => {
           </div>
         </div>
       </div>
-      
     </div>
   );
 };

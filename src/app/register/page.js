@@ -8,9 +8,18 @@ import "react-toastify/dist/ReactToastify.css";
 import logo from "../../Image/logo-p.svg";
 import img from "../../Image/summit-app.jpg";
 
+import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
+import { registerUser } from "@/redux/reducers/userReducer";
+import store from "@/redux/store";
+
 const Page = () => {
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+
   const [formData, setFormData] = useState({
-    username: "",
+    name: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -72,15 +81,44 @@ const Page = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (isFormValid) {
-      // Simulate a successful signup
-      // Add your actual signup logic here
+      try {
+        await dispatch(registerUser(formData));
+        const updatedUser = store.getState().user;
+        console.log("Form submitted:", formData, updatedUser);
 
-      // Show success toast
-      toast.success("Signup successful!", {
+        console.log(updatedUser.success);
+        if (updatedUser.success) {
+          // Show success toast
+          toast.success("Signup successful!", {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+          });
+
+          router.push("/");
+        } else {
+          toast.error(updatedUser?.data?.message);
+        }
+      } catch (error) {
+        console.log(error);
+        toast.error("Something went wrong");
+      }
+      // Clear form data after successful signup
+      setFormData({
+        name: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+      });
+    } else {
+      toast.error("Something went wrong", {
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: false,
@@ -88,15 +126,6 @@ const Page = () => {
         pauseOnHover: true,
         draggable: true,
       });
-
-      // Clear form data after successful signup
-      setFormData({
-        username: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-      });
-    } else {
       console.log("Form is not valid");
     }
   };
@@ -118,16 +147,16 @@ const Page = () => {
                 <input
                   autoComplete="off"
                   id="username"
-                  name="username"
+                  name="name"
                   type="text"
-                  value={formData.username}
+                  value={formData.name}
                   onChange={handleChange}
                   className="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:border-rose-600"
-                  placeholder="Username"
+                  placeholder="name"
                   required
                 />
                 <label
-                  htmlFor="username"
+                  htmlFor="name"
                   className="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm"
                 >
                   User name
@@ -247,7 +276,7 @@ const Page = () => {
                   }`}
                   disabled={!isFormValid}
                 >
-                  Sign Up
+                  {user.loading ? "Loading..." : "Sign Up"}
                 </button>
               </div>
             </form>
